@@ -21,6 +21,13 @@ resource "azurerm_network_interface" "main" {
     name                          = var.ip_conf_name
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.test.id
   }
 }
 
+resource "azurerm_public_ip" "test" {
+  name                = "PublicIp1"
+  location            = var.location
+  resource_group_name = var.name
+  allocation_method   = "Static"
+}

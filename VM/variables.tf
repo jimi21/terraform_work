@@ -15,9 +15,9 @@ variable "os_comp_name" {
 }
 
 variable "admin_uname" {
-  default = "testadmin"
+  default = "jimi"
 }
 
 variable "admin_pwd" {
-  default = "Password1234!"
+  default = "einfochips@123"
 }
