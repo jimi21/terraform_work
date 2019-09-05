@@ -21,3 +21,7 @@ variable "admin_uname" {
 variable "admin_pwd" {
   default = "einfochips@123"
 }
+
+variable "rglocation" {
+  default = "West US 2"
+}
