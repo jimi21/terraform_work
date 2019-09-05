@@ -5,7 +5,6 @@ p
 1
 2048
 104857599
-p
 w
 EOF
 mkfs -t ext4 /dev/sdc1
