@@ -3,8 +3,8 @@ fdisk /dev/sdc
 n
 p
 1
-
-
+2048
+104857599
 p
 w
 EOF
