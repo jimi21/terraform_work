@@ -8,7 +8,6 @@ p
 p
 w
 EOF
-
 mkfs -t ext4 /dev/sdc1
 mkdir /datadrive
 mount /dev/sdc1 /datadrive
