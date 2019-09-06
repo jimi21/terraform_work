@@ -31,3 +31,44 @@ resource "azurerm_public_ip" "test" {
   resource_group_name = var.name
   allocation_method   = "Static"
 }
+
+resource "null_resource" "ex_provisioner" {
+  triggers = {
+    public_ip = azurerm_public_ip.test.id
+  }
+  connection {
+    type = "ssh"
+    host = azurerm_public_ip.test.ip_address
+    user = var.admin_uname
+    password = var.admin_pwd
+    #port = var.ssh_port
+  }
+
+  provisioner "file" {
+    source = "./partition.sh"
+    destination = "/tmp/partition.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 20",
+    "chmod +x /tmp/partition.sh",
+    "/tmp/partition.sh"]
+  }
+}
+
+resource "azurerm_network_security_group" "mytfnsg" {
+  location = var.location
+  name = "mytfnsg"
+  resource_group_name = var.name
+  security_rule {
+    access = "Allow"
+    direction = "Inbound"
+    name = "SSH"
+    priority = 200
+    protocol = "TCP"
+    source_port_range = "*"
+    destination_port_range = "22"
+    source_address_prefix = "*"
+    destination_address_prefix = "*"
+  }
+}

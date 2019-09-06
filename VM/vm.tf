@@ -36,21 +36,3 @@ resource "azurerm_virtual_machine" "main" {
     environment = "staging"
   }
 }
-
-resource "azurerm_virtual_machine_extension" "test" {
-  location = var.rglocation
-  name = "hostname"
-  publisher = "Microsoft.Azure.Extensions"
-  resource_group_name = var.name
-  type = "CustomScript"
-  type_handler_version = "2.0"
-  virtual_machine_name = azurerm_virtual_machine.main.name
-
-  settings = <<SETTINGS
-    {
-        "fileUris": ["https://github.com/jimi21/terraform_work/blob/master/partition.sh"],
-        "commandToExecute": "sh partition.sh"
-    }
-SETTINGS
-
-}
