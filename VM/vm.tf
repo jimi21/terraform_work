@@ -49,7 +49,7 @@ resource "azurerm_virtual_machine_extension" "test" {
   settings = <<SETTINGS
     {
         "fileUris": ["https://github.com/jimi21/terraform_work/blob/master/partition.sh"],
-        "commandToExecute": "bash partition.sh"
+        "commandToExecute": "sh partition.sh"
     }
 SETTINGS
 
