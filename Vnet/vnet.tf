@@ -52,7 +52,7 @@ resource "null_resource" "ex_provisioner" {
     inline = [
       "sleep 20",
     "chmod +x /tmp/partition.sh",
-    "/tmp/partition.sh"]
+    "sudo bash /tmp/partition.sh"]
   }
 }
 
