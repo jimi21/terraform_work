@@ -41,7 +41,6 @@ resource "null_resource" "ex_provisioner" {
     host = azurerm_public_ip.test.ip_address
     user = var.admin_uname
     password = var.admin_pwd
-    #port = var.ssh_port
   }
 
   provisioner "file" {
@@ -52,7 +51,7 @@ resource "null_resource" "ex_provisioner" {
     inline = [
       "sleep 20",
     "chmod +x /tmp/partition.sh",
-    "/tmp/partition.sh"]
+    "sudo bash /tmp/partition.sh"]
   }
 }
 
